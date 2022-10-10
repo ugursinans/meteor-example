@@ -8,7 +8,7 @@ export const ContractList = () => {
     });
     return (
         <div>
-        <h2>Contract List</h2>
+        <h2>Contract List Hop</h2>
         <ul>
             {contractList.map( (contract) => (
                 <li key={contract.email}>
