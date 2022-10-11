@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import {Meteor} from 'meteor/meteor';
+import { Button,Grid,TextField } from '@mui/material';
+import { Container } from '@mui/system';
 export const ContractForm = () => {
 
     const [name, setName] = useState('');
@@ -21,21 +23,18 @@ export const ContractForm = () => {
 
     return (
        <form>
-        <div>
-            <label htmlFor='name'>Name</label>
-            <input type='text' value={name} id='text' onChange={(e)=>(setName(e.target.value))}/>
-        </div>
-        <div>
-            <label htmlFor='email'>Email</label>
-            <input type='email' value={email}  id='email' onChange={(e)=>(setEmail(e.target.value))}/>
-
-        </div>
-        <div>
-            <label htmlFor='imageUrl'>Image Url</label>
-            <input type='text' value={imageUrl}  id='imageUrl' onChange={(e)=>(setImageUrl(e.target.value))}/>
-
-        </div>
-        <button type='button' onClick={submitForm}>Submit</button>
+        <Grid container spacing ={2} direction="column">
+            <Grid item>
+                <TextField fullWidth value={name} id='name' onChange={(e)=>(setName(e.target.value))} label="Name" variant="filled" />
+            </Grid>
+            <Grid item>
+                <TextField fullWidth value={email} id='email' onChange={(e)=>(setEmail(e.target.value))} label="Email" variant="filled" />
+            </Grid>
+            <Grid item>
+                <TextField fullWidth value={imageUrl} id='imageUrl' onChange={(e)=>(setImageUrl(e.target.value))} label="imageUrl" variant="filled" />
+            </Grid>
+        </Grid>
+        <Button type='button' onClick={submitForm}>Submit</Button>
        </form> 
     );
 
