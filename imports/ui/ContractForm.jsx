@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { ContractCollection } from '../api/ContractCollection';
-
+import {Meteor} from 'meteor/meteor';
 export const ContractForm = () => {
 
     const [name, setName] = useState('');
@@ -9,8 +8,12 @@ export const ContractForm = () => {
     const [imageUrl, setImageUrl] = useState('');
 
     const submitForm = () => {
-        ContractCollection.insert({name,email,imageUrl});
-        console.log(name,email,imageUrl);
+        //ContractCollection.insert({name,email,imageUrl});
+        Meteor.call('insertContract',{name,email,imageUrl},(response)=>{
+            if(response){ 
+                alert(response.error);
+            }
+        });
         setName('');
         setEmail('');
         setImageUrl('');
