@@ -8,12 +8,12 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 export const ContractList = (() => {
 
-    const isLoading = useSubscribe('ListOfContracts');
+    const isLoading = useSubscribe('FilteredContracts');
     const contractList = useFind(()=>{
-        return ContractCollection.find({});//,{sort:{CreatedDate : -1}}
+        return ContractCollection.find({},{sort:{CreatedAt : -1}});
     });
     deleteContract= (e,id) =>{
-        Meteor.call('deleteContract',{id});
+        Meteor.call('archiveContract',{id});
     }
     return (
         <div>

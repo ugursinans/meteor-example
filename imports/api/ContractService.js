@@ -12,10 +12,14 @@ Meteor.methods({
         if(!validation){
             throw new Meteor.Error('Name is required');
         }
-        return ContractCollection.insert({name,email,imageUrl});
+        return ContractCollection.insert({name,email,imageUrl,CreatedAt:Date.now(),archived:false});
     },
     'deleteContract'({id}){
         check(id,String)
         return ContractCollection.remove({_id:id});
+    },
+    'archiveContract'({id}){
+        check(id,String)
+        return ContractCollection.update({_id:id},{$set:{archived:true}});
     }
 });  
